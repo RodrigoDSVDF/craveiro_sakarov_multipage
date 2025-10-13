@@ -30,6 +30,9 @@ body {
     line-height: 1.7;
     background-color: var(--primary-dark);
     overflow-x: hidden;
+    /* Melhora a renderização e suavidade das fontes */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -42,6 +45,13 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* Garante que imagens sejam responsivas por padrão */
+img, svg {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove o espaço extra abaixo das imagens */
 }
 
 /* Header */
@@ -257,7 +267,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Page Header */
 .page-header {
-    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
     padding: 150px 0 80px;
     text-align: center;
     margin-top: 90px;
@@ -299,7 +309,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Destaques */
 .section-destaques {
     padding: 100px 0;
-    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
 }
 
 .destaques-grid {
@@ -311,7 +321,7 @@ h1, h2, h3, h4, h5, h6 {
 .destaque-item {
     text-align: center;
     padding: 40px 30px;
-    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
     border-radius: 15px;
     transition: all 0.4s ease;
     border: 1px solid rgba(255,255,255,0.05);
@@ -343,7 +353,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Áreas Resumo */
 .section-areas-resumo {
     padding: 100px 0;
-    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%);
 }
 
 .areas-grid {
@@ -354,7 +364,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .area-card {
-    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
     padding: 40px 30px;
     border-radius: 15px;
     text-decoration: none;
@@ -393,7 +403,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Processo */
 .section-processo {
     padding: 100px 0;
-    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
 }
 
 .processo-grid {
@@ -406,7 +416,7 @@ h1, h2, h3, h4, h5, h6 {
 .processo-item {
     text-align: center;
     padding: 50px 30px;
-    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
     border-radius: 15px;
     transition: all 0.4s ease;
     box-shadow: 0 8px 25px rgba(0,0,0,0.3);
@@ -447,7 +457,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Escritório Page */
 .section-escritorio-page {
     padding: 100px 0;
-    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
 }
 
 .escritorio-content-page {
@@ -508,7 +518,7 @@ h1, h2, h3, h4, h5, h6 {
 /* MVV Section */
 .section-mvv {
     padding: 100px 0;
-    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%);
 }
 
 .mvv-grid {
@@ -520,7 +530,7 @@ h1, h2, h3, h4, h5, h6 {
 .mvv-item {
     text-align: center;
     padding: 50px 30px;
-    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
     border-radius: 15px;
     transition: all 0.4s ease;
     border: 1px solid rgba(255,255,255,0.05);
@@ -532,9 +542,20 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--accent-gold);
 }
 
+/* ESTILO MODIFICADO PARA AS IMAGENS */
 .mvv-icon {
-    font-size: 3.5rem;
     margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.mvv-icon img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-gold);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .mvv-title {
@@ -552,7 +573,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Diferenciais */
 .section-diferenciais {
     padding: 100px 0;
-    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
 }
 
 .diferenciais-grid {
@@ -563,7 +584,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .diferencial-item {
     padding: 40px 30px;
-    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
     border-radius: 15px;
     transition: all 0.4s ease;
     border: 1px solid rgba(255,255,255,0.05);
@@ -597,11 +618,11 @@ h1, h2, h3, h4, h5, h6 {
 /* Área Detail */
 .section-area-detail {
     padding: 80px 0;
-    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
 }
 
 .section-area-detail.alt {
-    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%);
 }
 
 .area-detail-content {
@@ -705,7 +726,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Contato Page */
 .section-contato-page {
     padding: 100px 0;
-    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
 }
 
 .contato-grid {
@@ -716,7 +737,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .contato-info-box,
 .contato-form-box {
-    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
     padding: 50px 40px;
     border-radius: 15px;
     border: 1px solid rgba(255,255,255,0.05);
@@ -798,7 +819,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Mapa */
 .section-mapa {
     padding: 100px 0;
-    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%);
 }
 
 .mapa-container {
@@ -808,7 +829,7 @@ h1, h2, h3, h4, h5, h6 {
 .mapa-placeholder {
     width: 100%;
     height: 400px;
-    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -826,7 +847,7 @@ h1, h2, h3, h4, h5, h6 {
 /* CTA WhatsApp */
 .section-cta-whatsapp {
     padding: 100px 0;
-    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
     text-align: center;
 }
 
@@ -864,7 +885,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Footer */
 .footer {
-    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%); /* Gradiente mais claro */
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%);
     color: var(--text-muted);
     padding: 60px 0 30px;
     border-top: 1px solid rgba(255,255,255,0.05);
@@ -1040,4 +1061,4 @@ h1, h2, h3, h4, h5, h6 {
         padding: 14px 30px;
         font-size: 0.9rem;
     }
-    }
+}
