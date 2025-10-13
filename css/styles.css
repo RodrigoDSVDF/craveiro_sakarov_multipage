@@ -129,6 +129,9 @@ img, svg {
     font-weight: 600;
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(42, 74, 40, 0.5);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .btn-whatsapp:hover {
@@ -864,13 +867,13 @@ img, svg {
     .areas-grid,
     .processo-grid,
     .mvv-grid,
-    .diferenciais-grid {
+    .diferenciais-grid,
+    .footer-content {
         grid-template-columns: 1fr;
     }
 
     .escritorio-content-page,
-    .contato-grid,
-    .footer-content {
+    .contato-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -960,6 +963,11 @@ img, svg {
     .processo-item,
     .mvv-item {
         gap: 10px; /* Aumenta o espaço entre o ícone, título e texto */
+    }
+
+    /* --- 6. AUMENTA O ESPAÇAMENTO DO MENU DE NAVEGAÇÃO --- */
+    .nav {
+        gap: 45px; /* Aumenta o espaço entre os links "Home", "O Escritório", etc. */
     }
 }
 
