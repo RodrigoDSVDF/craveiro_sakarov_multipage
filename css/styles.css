@@ -1,638 +1,972 @@
-import streamlit as st
-from datetime import datetime
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-# Configuração da página
-st.set_page_config(
-    page_title="Rodrigo Silva - Currículo Interativo",
-    page_icon="👨‍💻",
-    layout="wide",
-    initial_sidebar_state="collapsed"
-)
+:root {
+    --primary-dark: #000000;
+    --secondary-dark: #0a0a0a;
+    --accent-military-green: #2a4a28;
+    --accent-gold: #d4af37;
+    --text-light: #ffffff;
+    --text-muted: #b0b0b0;
+    --white: #ffffff;
+    --gradient-start: #000000;
+    --gradient-end: #1a1a1a;
+    --military-green-dark: #1e3a1c;
+    --light-dark: #1e1e1e;
+    --medium-dark: #2d2d2d;
+}
 
-# CSS customizado para design moderno
-st.markdown("""
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
-    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
-    
-    /* Reset e configurações gerais */
-    .main .block-container {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-        max-width: 1200px;
-    }
-    
-    /* Fundo escuro */
-    .stApp {
-        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-        color: #ffffff;
-        font-family: 'Montserrat', sans-serif;
-    }
-    
-    /* Estilo para a imagem de perfil */
-    .profile-image-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 1.5rem; /* Espaço abaixo da imagem */
-    }
+html {
+    scroll-behavior: smooth;
+}
 
-    .profile-image-container img {
-        border-radius: 50%; /* Torna a imagem redonda */
-        border: 5px solid #00BFFF; /* Borda colorida */
-        box-shadow: 0 0 20px rgba(0, 191, 255, 0.5); /* Sombra vibrante */
-        transition: transform 0.3s ease;
-    }
+body {
+    font-family: 'Lato', sans-serif;
+    color: var(--text-light);
+    line-height: 1.7;
+    background-color: var(--primary-dark);
+    overflow-x: hidden;
+    /* Melhora a renderização e suavidade das fontes */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
-    .profile-image-container img:hover {
-        transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Garante que imagens sejam responsivas por padrão */
+img, svg {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove o espaço extra abaixo das imagens */
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%);
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 70px;
+    width: auto;
+    filter: brightness(1.1);
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+.nav {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.2s ease;
+    padding: 8px 0;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-gold);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--accent-gold);
+    transform: translateY(-2px);
+}
+
+.btn-whatsapp {
+    background-color: var(--accent-military-green);
+    color: var(--white);
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(42, 74, 40, 0.5);
+}
+
+.btn-whatsapp:hover {
+    background-color: var(--military-green-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(42, 74, 40, 0.7);
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+}
+
+/* Hero Section - MAIS CLARA */
+.hero {
+    background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(26,26,26,0.3) 100%), 
+                url('../images/60d4e722a810560333381310_Advogado-4.0.jpeg') center/cover no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 90px;
+    overflow: hidden;
+    padding: 80px 0;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.2); /* Overlay mais claro */
+    z-index: 1;
+}
+
+@keyframes backgroundPan {
+    from {
+        background-position: 0% 0%;
     }
-    
-    /* Cabeçalho principal */
-    .header-container {
-        background: linear-gradient(135deg, #00BFFF 0%, #39FF14 100%);
-        padding: 3rem 2rem;
-        border-radius: 20px;
-        margin-bottom: 2rem;
-        text-align: center;
-        box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
-        position: relative;
-        overflow: hidden;
+    to {
+        background-position: 100% 100%;
     }
-    
-    .header-container::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-        animation: rotate 20s linear infinite;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.2); /* Overlay mais claro */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--white);
+    max-width: 900px;
+    padding: 40px 20px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    margin-bottom: 25px;
+    line-height: 1.1;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+    letter-spacing: 1px;
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--accent-gold);
+    color: var(--primary-dark);
+    padding: 18px 45px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #c4a02f;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.7);
+}
+
+.btn-secondary {
+    display: inline-block;
+    background-color: var(--accent-military-green);
+    color: var(--white);
+    padding: 14px 35px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(42, 74, 40, 0.5);
+    text-transform: uppercase;
+}
+
+.btn-secondary:hover {
+    background-color: var(--military-green-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(42, 74, 40, 0.7);
+}
+
+/* Page Header */
+.page-header {
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
+    padding: 150px 0 80px;
+    text-align: center;
+    margin-top: 90px;
+    border-bottom: 2px solid rgba(42, 74, 40, 0.3);
+}
+
+.page-title {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.page-subtitle {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+/* Section Styles */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 3rem;
+    color: var(--white);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* Destaques */
+.section-destaques {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
+}
+
+.destaques-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.destaque-item {
+    text-align: center;
+    padding: 40px 30px;
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.destaque-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    border-color: var(--accent-gold);
+}
+
+.destaque-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: var(--accent-gold);
+}
+
+.destaque-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--white);
+}
+
+.destaque-description {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Áreas Resumo */
+.section-areas-resumo {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%);
+}
+
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.area-card {
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
+    padding: 40px 30px;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.area-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    border-color: var(--accent-military-green);
+}
+
+.area-card-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--accent-military-green);
+}
+
+.area-card-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--white);
+}
+
+.area-card-description {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    flex-grow: 1; /* Faz a descrição ocupar o espaço disponível */
+}
+
+.area-card-link {
+    margin-top: 20px;
+    color: var(--accent-gold);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.section-cta {
+    text-align: center;
+}
+
+/* Processo */
+.section-processo {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
+}
+
+.processo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.processo-item {
+    text-align: center;
+    padding: 50px 30px;
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.processo-item:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    border-color: var(--accent-gold);
+}
+
+.processo-number {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--accent-military-green);
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.processo-title {
+    font-size: 1.8rem;
+    color: var(--white);
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.processo-description {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.processo-cta {
+    text-align: center;
+}
+
+/* Escritório Page */
+.section-escritorio-page {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
+}
+
+.escritorio-content-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.content-title {
+    font-size: 2.5rem;
+    color: var(--accent-gold);
+    margin-bottom: 30px;
+}
+
+.content-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: var(--text-light);
+    margin-bottom: 25px;
+}
+
+.escritorio-image-page {
+    position: relative;
+}
+
+.image-frame {
+    position: relative;
+    padding: 20px;
+    border: 2px solid var(--accent-gold);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.image-frame::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 2px solid var(--accent-military-green);
+    z-index: 1;
+    opacity: 0.3;
+    border-radius: 10px;
+}
+
+.escritorio-foto {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* MVV Section */
+.section-mvv {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%);
+}
+
+.mvv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.mvv-item {
+    text-align: center;
+    padding: 50px 30px;
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.mvv-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    border-color: var(--accent-gold);
+}
+
+.mvv-icon {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.mvv-icon img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-gold);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.mvv-title {
+    font-size: 2rem;
+    color: var(--accent-military-green);
+    margin-bottom: 20px;
+}
+
+.mvv-description {
+    font-size: 1.05rem;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+/* Diferenciais */
+.section-diferenciais {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
+}
+
+.diferenciais-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.diferencial-item {
+    padding: 40px 30px;
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.diferencial-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    border-color: var(--accent-military-green);
+}
+
+.diferencial-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+}
+
+.diferencial-title {
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 15px;
+}
+
+.diferencial-description {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Contato Page */
+.section-contato-page {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
+}
+
+.contato-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+.contato-info-box,
+.contato-form-box {
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
+    padding: 50px 40px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.contato-box-title {
+    font-size: 2rem;
+    color: var(--accent-gold);
+    margin-bottom: 40px;
+}
+
+.contato-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.contato-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.contato-text h4 {
+    font-size: 1.2rem;
+    color: var(--accent-military-green);
+    margin-bottom: 10px;
+}
+
+.contato-text p {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Form */
+.contato-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group label {
+    font-size: 1rem;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 15px;
+    background-color: var(--light-dark);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 1rem;
+    font-family: 'Lato', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* Footer */
+.footer {
+    color: var(--text-muted);
+    padding: 80px 0 40px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.7)), url('../images/dublin_cs.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-title {
+    font-size: 1.3rem;
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+}
+
+.footer-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-light);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent-gold);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-bottom p {
+    font-size: 0.95rem;
+}
+
+/* Scroll to Top */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--accent-gold);
+    color: var(--white);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    border: none;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    background-color: #c4a02f;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
     }
-    
-    @keyframes rotate {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
-    
-    .header-name {
-        font-size: 3.5rem;
-        font-weight: 700;
-        color: #000;
-        margin-bottom: 0.5rem;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        position: relative;
-        z-index: 1;
-    }
-    
-    .header-title {
-        font-size: 1.5rem;
-        color: #000;
-        margin-bottom: 1rem;
-        font-weight: 400;
-        position: relative;
-        z-index: 1;
-    }
-    
-    .contact-info {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .header-content {
         flex-wrap: wrap;
-        position: relative;
-        z-index: 1;
-        margin-top: 1rem; /* Ajuste para o novo layout */
     }
-    
-    .contact-item {
+
+    .menu-toggle {
         display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #000; /* Cor padrão para links no cabeçalho */
-        text-decoration: none;
-        font-weight: 500;
-        transition: all 0.3s ease;
+    }
+
+    .nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px 0;
+        order: 3; /* Faz o menu aparecer abaixo do logo e do botão */
+    }
+
+    .nav.active {
+        display: flex;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+    }
+
+    .destaques-grid,
+    .areas-grid,
+    .processo-grid,
+    .mvv-grid,
+    .diferenciais-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .escritorio-content-page,
+    .contato-grid,
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
     }
     
-    .contact-item:hover {
-        transform: translateY(-2px);
-        color: #333;
+    .destaques-grid, .areas-grid {
+        grid-template-columns: 1fr;
     }
     
-    /* Seções */
-    .section-container {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 15px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        transition: all 0.3s ease;
+    .btn-primary,
+    .btn-secondary {
+        padding: 14px 30px;
+        font-size: 0.9rem;
     }
-    
-    .section-container:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(0, 191, 255, 0.2);
-        border-color: rgba(0, 191, 255, 0.3);
+}
+
+/* =============================================== */
+/* AJUSTES DE REFINAMENTO PARA DESKTOPS E TELAS GRANDES */
+/* =============================================== */
+
+/* Aplica estas regras somente quando a tela tiver 992px de largura ou mais */
+@media (min-width: 992px) {
+
+    /* --- 1. Aumenta o tamanho base da fonte para melhor legibilidade --- */
+    html {
+        font-size: 17px; /* O padrão é 16px. Isso aumenta tudo proporcionalmente. */
+    }
+
+    /* --- 2. Adiciona mais "respiro" vertical entre as seções --- */
+    .section-destaques,
+    .section-areas-resumo,
+    .section-processo,
+    .section-escritorio-page,
+    .section-mvv,
+    .section-diferenciais,
+    .section-contato-page {
+        padding-top: 120px;
+        padding-bottom: 120px;
+    }
+
+    /* --- 3. Aumenta o tamanho dos títulos principais --- */
+    .hero-title {
+        font-size: 5rem; /* Um pouco maior para preencher melhor o espaço */
     }
     
     .section-title {
-        font-size: 2rem;
-        font-weight: 600;
-        color: #00BFFF;
-        margin-bottom: 1.5rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
+        font-size: 3.2rem; /* Títulos de seção mais imponentes */
+    }
+
+    .page-title {
+        font-size: 3.8rem;
     }
     
-    .section-title::after {
-        content: '';
-        flex: 1;
-        height: 2px;
-        background: linear-gradient(90deg, #00BFFF, transparent);
+    /* --- 4. Aumenta o tamanho dos textos e descrições --- */
+    .hero-subtitle,
+    .page-subtitle {
+        font-size: 1.5rem; /* Subtítulos mais legíveis */
     }
-    
-    /* Cards de experiência */
-    .experience-card {
-        background: rgba(0, 191, 255, 0.1);
-        border-left: 4px solid #00BFFF;
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-        border-radius: 10px;
-        transition: all 0.3s ease;
+
+    .destaque-description,
+    .area-card-description,
+    .processo-description,
+    .mvv-description,
+    .content-paragraph {
+        font-size: 1.1rem; /* Textos de parágrafo um pouco maiores */
     }
-    
-    .experience-card:hover {
-        background: rgba(0, 191, 255, 0.15);
-        transform: translateX(10px);
+
+    /* --- 5. Aumenta o espaçamento dentro dos cards e itens --- */
+    .destaque-item,
+    .area-card,
+    .processo-item,
+    .mvv-item {
+        gap: 10px; /* Aumenta o espaço entre o ícone, título e texto */
     }
-    
-    .job-title {
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: #39FF14;
-        margin-bottom: 0.5rem;
+}
+
+/* Opcional: Para telas MUITO grandes (acima de 1400px) */
+@media (min-width: 1400px) {
+    /* Aumenta a largura máxima do conteúdo */
+    .container {
+        max-width: 1300px;
     }
-    
-    .company-name {
-        font-size: 1.1rem;
-        color: #00BFFF;
-        margin-bottom: 0.5rem;
-    }
-    
-    .job-period {
-        font-size: 0.9rem;
-        color: #888;
-        margin-bottom: 1rem;
-    }
-    
-    /* Skills */
-    .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-        margin-top: 1rem;
-    }
-    
-    .skill-item {
-        background: linear-gradient(135deg, #00BFFF, #39FF14);
-        padding: 1rem;
-        border-radius: 10px;
-        text-align: center;
-        color: #000;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-    
-    .skill-item:hover {
-        transform: scale(1.05);
-        box-shadow: 0 5px 15px rgba(0, 191, 255, 0.4);
-    }
-    
-    /* Idiomas */
-    .language-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-        background: rgba(57, 255, 20, 0.1);
-        border-radius: 10px;
-        margin-bottom: 1rem;
-        border-left: 4px solid #39FF14;
-    }
-    
-    .language-name {
-        font-weight: 600;
-        color: #39FF14;
-    }
-    
-    .language-level {
-        color: #888;
-    }
-    
-    /* Cursos */
-    .course-item {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 1rem;
-        border-radius: 8px;
-        margin-bottom: 0.5rem;
-        border-left: 3px solid #00BFFF;
-        transition: all 0.3s ease;
-    }
-    
-    .course-item:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: translateX(5px);
-    }
-    
-    /* Links de projetos */
-    .project-link {
-        display: inline-block;
-        background: linear-gradient(135deg, #00BFFF, #39FF14);
-        color: #000;
-        padding: 1rem 2rem;
-        border-radius: 25px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        margin: 0.5rem;
-    }
-    
-    .project-link:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(0, 191, 255, 0.4);
-        color: #000;
-        text-decoration: none;
-    }
-    
-    /* Responsividade */
-    @media (max-width: 768px) {
-        .header-name {
-            font-size: 2.5rem;
-        }
-        
-        .contact-info {
-            flex-direction: column;
-            gap: 1rem;
-        }
-        
-        .skills-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .stImage {
-            text-align: center; /* Centraliza a imagem em telas menores */
-        }
-    }
-    
-    /* Animações */
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    .section-container {
-        animation: fadeInUp 0.6s ease-out;
-    }
-    
-    /* Scrollbar customizada */
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
-    
-    ::-webkit-scrollbar-track {
-        background: #1a1a1a;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        background: linear-gradient(135deg, #00BFFF, #39FF14);
-        border-radius: 4px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(135deg, #39FF14, #00BFFF);
-    }
-</style>
-""", unsafe_allow_html=True)
-
-# --- CABEÇALHO COM FOTO E INFORMAÇÕES PESSOAIS ---
-# O container do cabeçalho aplica o gradiente e a animação de fundo
-st.markdown('<div class="header-container">', unsafe_allow_html=True)
-
-col_img, col_info = st.columns([0.25, 0.75]) # Ajuste das proporções para a imagem e texto
-
-with col_img:
-    st.markdown('<div class="profile-image-container">', unsafe_allow_html=True)
-    st.image("minha_foto.png", width=200) # Ajuste a largura conforme sua preferência
-    st.markdown('</div>', unsafe_allow_html=True)
-
-with col_info:
-    st.markdown(f"""
-    <div style="text-align: left;">
-        <h1 class="header-name" style="color: #000; margin-bottom: 0.5rem;">RODRIGO SILVA</h1>
-        <p class="header-title" style="color: #000; margin-top: 0; font-size: 1.4rem;">Analista de Dados | Data Science | Python | Streamlit</p>
-        <div class="contact-info" style="justify-content: flex-start; margin-top: 1rem;">
-            <a href="tel:+5561983773112" class="contact-item" style="color: #000;">
-                <i class="fas fa-phone"></i> (61) 98377-3112
-            </a>
-            <a href="mailto:rodrigo.vhlh@gmail.com" class="contact-item" style="color: #000;">
-                <i class="fas fa-envelope"></i> rodrigo.vhlh@gmail.com
-            </a>
-            <a href="https://www.linkedin.com/in/rodrigo-s-45724116a/" target="_blank" class="contact-item" style="color: #000;">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-st.markdown('</div>', unsafe_allow_html=True) # Fecha o header-container
-
-# Perfil Profissional
-st.markdown("""
-<div class="section-container">
-    <h2 class="section-title">
-        <i class="fas fa-user-tie"></i>
-        Perfil Profissional
-    </h2>
-    <p style="font-size: 1.1rem; line-height: 1.8; text-align: justify;">
-        Profissional com sólida experiência em <strong>Análise de Dados</strong>, com domínio em <strong>Python</strong> e aplicando fundamentos de Data Science para extração de insights estratégicos. Possui atuação no desenvolvimento de <strong>aplicações interativas utilizando Streamlit</strong>, focadas em visualização e exploração de dados. O profissional tem conhecimento em Inteligência Artificial (IA), com destaque para engenharia de prompt e criação de robôs para automação de processos.
-    </p>
-    <p style="font-size: 1.1rem; line-height: 1.8; text-align: justify;">
-        Detém experiência na <strong>validação e transformação de dados</strong> por meio de processos ETL em SQL, assegurando a qualidade e a integridade dos dados. É responsável pela criação de indicadores e dashboards com <strong>Power BI</strong>, gerando valor estratégico para diversas áreas, como Comercial, Controladoria e Logística.
-    </p>
-    <p style="font-size: 1.1rem; line-height: 1.8; text-align: justify;">
-        Apresenta um perfil analítico, proativo e focado na entrega de soluções baseadas em dados para suportar a tomada de decisão.
-    </p>
-</div>
-""", unsafe_allow_html=True)
-
-# Transição de Carreira e Habilidades Transferíveis
-st.markdown("""
-<div class="section-container">
-    <h2 class="section-title">
-        <i class="fas fa-laptop-code"></i>
-        Transição de Carreira e Habilidades Transferíveis
-    </h2>
-    <p style="font-size: 1.1rem; line-height: 1.8; text-align: justify;">
-        Atualmente, em transição para a área de Tecnologia da Informação e Análise de Dados, com foco em:
-    </p>
-    <ul style="font-size: 1.1rem; line-height: 1.8;">
-        <li><strong>Python</strong> e ferramentas de análise de dados</li>
-        <li><strong>Segurança da informação</strong> e boas práticas de proteção de sistemas</li>
-        <li><strong>Desenvolvimento de soluções analíticas</strong> e automações com uso de IA</li>
-    </ul>
-    <p style="font-size: 1.1rem; line-height: 1.8; text-align: justify;">
-        A experiência consolidada em ambientes sensíveis e institucionais proporcionou o desenvolvimento de habilidades essenciais para a área de tecnologia, tais como:
-    </p>
-    <ul style="font-size: 1.1rem; line-height: 1.8;">
-        <li><strong>Pensamento analítico</strong> e tomada de decisão sob pressão</li>
-        <li><strong>Rigor com processos</strong> e segurança da informação</li>
-        <li><strong>Capacidade de seguir protocolos técnicos</strong> e aprender novos sistemas</li>
-        <li><strong>Facilidade de adaptação</strong> a ambientes corporativos e governamentais</li>
-    </ul>
-</div>
-""", unsafe_allow_html=True)
-
-# Habilidades
-st.markdown("""
-<div class="section-container">
-    <h2 class="section-title">
-        <i class="fas fa-cogs"></i>
-        Habilidades
-    </h2>
-""", unsafe_allow_html=True)
-
-with st.expander("Habilidades Comportamentais"): 
-    st.markdown("""
-    <div class="skills-grid">
-        <div class="skill-item">
-            <i class="fas fa-users"></i><br>
-            Trabalho em Equipe
-        </div>
-        <div class="skill-item">
-            <i class="fas fa-crown"></i><br>
-            Liderança
-        </div>
-        <div class="skill-item">
-            <i class="fas fa-lightbulb"></i><br>
-            Pensamento Criativo
-        </div>
-        <div class="skill-item">
-            <i class="fas fa-puzzle-piece"></i><br>
-            Resolução de Problemas
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with st.expander("Habilidades Técnicas/Domínios"): 
-    st.markdown("""
-    <div class="skills-grid">
-        <div class="skill-item">
-            <i class="fas fa-code"></i><br>
-            Python (Data Science, Programação)
-        </div>
-        <div class="skill-item">
-            <i class="fas fa-database"></i><br>
-            SQL (Processos ETL)
-        </div>
-        <div class="skill-item">
-            <i class="fas fa-chart-bar"></i><br>
-            Power BI (Dashboards e Indicadores)
-        </div>
-        <div class="skill-item">
-            <i class="fas fa-laptop-code"></i><br>
-            Streamlit (Aplicações Interativas)
-        </div>
-        <div class="skill-item">
-            <i class="fas fa-robot"></i><br>
-            IA / Engenharia de Prompt
-        </div>
-        <div class="skill-item">
-            <i class="fas fa-shield-alt"></i><br>
-            Segurança da Informação
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-st.markdown("""
-</div>
-""", unsafe_allow_html=True)
-
-# Idiomas
-st.markdown("""
-<div class="section-container">
-    <h2 class="section-title">
-        <i class="fas fa-globe"></i>
-        Idiomas
-    </h2>
-""", unsafe_allow_html=True)
-
-with st.expander("Ver Idiomas"): 
-    st.markdown("""
-    <div class="language-item">
-        <span class="language-name">Português</span>
-        <span class="language-level">Nativo</span>
-    </div>
-    <div class="language-item">
-        <span class="language-name">Inglês</span>
-        <span class="language-level">Básico</span>
-    </div>
-    """, unsafe_allow_html=True)
-
-st.markdown("""
-</div>
-""", unsafe_allow_html=True)
-
-# Experiência Profissional
-st.markdown("""
-<div class="section-container">
-    <h2 class="section-title">
-        <i class="fas fa-briefcase"></i>
-        Experiência Profissional
-    </h2>
-""", unsafe_allow_html=True)
-
-with st.expander("M5 Segurança (2016 - 2025)"): 
-    st.markdown("""
-    <div class="experience-card">
-        <div class="job-title">Prestação de Serviços Terceirizados</div>
-        <div class="company-name">M5 Segurança</div>
-        <div class="job-period">2016 - 2025</div>
-        <p>Atuou na prestação de serviços terceirizados para diversos órgãos públicos de grande relevância, incluindo:</p>
-        <ul>
-            <li><strong>Banco do Brasil Tecnologia e Serviços (BBTS)</strong> – suporte administrativo e de segurança patrimonial</li>
-            <li><strong>Universidade do Banco Central</strong> – apoio em atividades de segurança, controle de acesso e logísticas</li>
-            <li><strong>INCRA (Instituto Nacional de Colonização e Reforma Agrária)</strong> – controle de acesso, documentação e suporte a eventos</li>
-            <li><strong>CFO (Conselho Federal de Odontologia)</strong> – serviços de segurança e controle de acesso em ambiente institucional</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
-
-with st.expander("Rio Doce Construções (2012 - 2015)"): 
-    st.markdown("""
-    <div class="experience-card">
-        <div class="job-title">Assistente Administrativo</div>
-        <div class="company-name">Rio Doce Construções</div>
-        <div class="job-period">2012 - 2015</div>
-        <p>Responsável por rotinas administrativas, controle de documentos, apoio ao setor financeiro e organização de processos internos.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with st.expander("Exército Brasileiro (2007 - 2011)"): 
-    st.markdown("""
-    <div class="experience-card">
-        <div class="job-title">Soldado – HFA e QGEx</div>
-        <div class="company-name">Exército Brasileiro</div>
-        <div class="job-period">2007 - 2011</div>
-        <p>Atuou na Seção de Inteligência e Segurança do HFA (Hospital das Forças Armadas), prestando apoio a operações sigilosas e administrativas. Transferido posteriormente para a Diretoria de Obras Militares (DOM), contribuindo com atividades técnicas e administrativas relacionadas a projetos de engenharia e infraestrutura militar.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-st.markdown("""
-</div>
-""", unsafe_allow_html=True)
-
-# Formação Acadêmica
-st.markdown("""
-<div class="section-container">
-    <h2 class="section-title">
-        <i class="fas fa-university"></i>
-        Formação Acadêmica
-    </h2>
-""", unsafe_allow_html=True)
-
-with st.expander("Ciência de Dados (Universidade Estácio) - Cursando"): 
-    st.markdown("""
-    <div class="experience-card">
-        <div class="job-title">Ciência de Dados</div>
-        <div class="company-name">Universidade Estácio</div>
-        <div class="job-period">2023 - 2026 (Cursando)</div>
-        <p><strong>Disciplinas Focadas:</strong> Análise de Dados, Programação, Sistema da Informação.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with st.expander("Tecnólogo em Gestão Financeira (Universidade Pitágoras Unopar)"): 
-    st.markdown("""
-    <div class="experience-card">
-        <div class="job-title">Tecnólogo em Gestão Financeira</div>
-        <div class="company-name">Universidade Pitágoras Unopar</div>
-        <div class="job-period">2016 - 2021</div>
-        <p><strong>Disciplinas Focadas:</strong> Matemática Financeira, Mercado de Capitais, Administração.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-st.markdown("""
-</div>
-""", unsafe_allow_html=True)
-
-# Cursos Adicionais
-st.markdown("""
-<div class="section-container">
-    <h2 class="section-title">
-        <i class="fas fa-graduation-cap"></i>
-        Cursos Adicionais
-    </h2>
-""", unsafe_allow_html=True)
-
-with st.expander("Ver Cursos da Udemy Academy"): 
-    st.markdown("""
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
-        <div>
-            <h4 style="color: #39FF14; margin-bottom: 1rem;">Udemy Academy</h4>
-            <div class="course-item">Formação em Ciência de Dados com Python</div>
-            <div class="course-item">Curso completo de Banco de Dados</div>
-            <div class="course-item">Curso de Modelagem de Dados</div>
-            <div class="course-item">Curso MySQL</div>
-            <div class="course-item">Curso de Introdução a Python</div>
-            <div class="course-item">Curso de Introdução ao R</div>
-            <div class="course-item">Curso de Algoritmos Genéricos em R</div>
-            <div class="course-item">Curso Análise e Estatística em R</div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with st.expander("Outros Cursos"): 
-    st.markdown("""
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
-        <div>
-            <div class="course-item">Excel Intermediário</div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-st.markdown("""
-</div>
-""", unsafe_allow_html=True)
-
-# Links de Projetos
-st.markdown("""
-<div class="section-container">
-    <h2 class="section-title">
-        <i class="fas fa-rocket"></i>
-        Projetos
-    </h2>
-    <div style="text-align: center; padding: 2rem;">
-        <a href="https://marketcrypto.streamlit.app/" target="_blank" class="project-link">
-            <i class="fas fa-chart-line"></i>
-            Market Crypto - Aplicação Streamlit
-        </a>
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-# Footer
-st.markdown("""
-<div style="text-align: center; padding: 2rem; margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1);">
-    <p style="color: #888; font-size: 0.9rem;">
-        Currículo desenvolvido com Streamlit • Última atualização: """ + datetime.now().strftime("%B %Y") + """
-    </p>
-</div>
-""", unsafe_allow_html=True)
+}
