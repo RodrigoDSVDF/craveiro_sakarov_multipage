@@ -1065,3 +1065,70 @@ img, svg {
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
+/* =============================================== */
+/* AJUSTES DE REFINAMENTO PARA DESKTOPS E TELAS GRANDES */
+/* =============================================== */
+
+/* Aplica estas regras somente quando a tela tiver 992px de largura ou mais */
+@media (min-width: 992px) {
+
+    /* --- 1. Aumenta o tamanho base da fonte para melhor legibilidade --- */
+    html {
+        font-size: 17px; /* O padrão é 16px. Isso aumenta tudo proporcionalmente. */
+    }
+
+    /* --- 2. Adiciona mais "respiro" vertical entre as seções --- */
+    .section-destaques,
+    .section-areas-resumo,
+    .section-processo,
+    .section-escritorio-page,
+    .section-mvv,
+    .section-diferenciais,
+    .section-contato-page {
+        padding-top: 120px;
+        padding-bottom: 120px;
+    }
+
+    /* --- 3. Aumenta o tamanho dos títulos principais --- */
+    .hero-title {
+        font-size: 5rem; /* Um pouco maior para preencher melhor o espaço */
+    }
+    
+    .section-title {
+        font-size: 3.2rem; /* Títulos de seção mais imponentes */
+    }
+
+    .page-title {
+        font-size: 3.8rem;
+    }
+    
+    /* --- 4. Aumenta o tamanho dos textos e descrições --- */
+    .hero-subtitle,
+    .page-subtitle {
+        font-size: 1.5rem; /* Subtítulos mais legíveis */
+    }
+
+    .destaque-description,
+    .area-card-description,
+    .processo-description,
+    .mvv-description,
+    .content-paragraph {
+        font-size: 1.1rem; /* Textos de parágrafo um pouco maiores */
+    }
+
+    /* --- 5. Aumenta o espaçamento dentro dos cards e itens --- */
+    .destaque-item,
+    .area-card,
+    .processo-item,
+    .mvv-item {
+        gap: 10px; /* Aumenta o espaço entre o ícone, título e texto */
+    }
+}
+
+/* Opcional: Para telas MUITO grandes (acima de 1400px) */
+@media (min-width: 1400px) {
+    /* Aumenta a largura máxima do conteúdo */
+    .container {
+        max-width: 1300px;
+    }
+}
