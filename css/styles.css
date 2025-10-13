@@ -8,7 +8,7 @@
 :root {
     --primary-dark: #000000;
     --secondary-dark: #0a0a0a;
-    --accent-military-green: #2a4a28; /* Verde militar original menos brilhante */
+    --accent-military-green: #2a4a28;
     --accent-gold: #d4af37;
     --text-light: #ffffff;
     --text-muted: #b0b0b0;
@@ -16,6 +16,8 @@
     --gradient-start: #000000;
     --gradient-end: #1a1a1a;
     --military-green-dark: #1e3a1c;
+    --light-dark: #1e1e1e;
+    --medium-dark: #2d2d2d;
 }
 
 html {
@@ -44,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Header */
 .header {
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%);
     padding: 15px 0;
     position: fixed;
     width: 100%;
@@ -143,9 +145,9 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s ease;
 }
 
-/* Hero Section - MANTIDO COMO ESTAVA */
+/* Hero Section - MAIS CLARA */
 .hero {
-    background: linear-gradient(135deg, rgba(0,0,0,0.65) 0%, rgba(26,26,26,0.65) 100%), 
+    background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(26,26,26,0.3) 100%), 
                 url('../images/60d4e722a810560333381310_Advogado-4.0.jpeg') center/cover no-repeat;
     min-height: 100vh;
     display: flex;
@@ -164,7 +166,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.2); /* Overlay mais claro */
     z-index: 1;
 }
 
@@ -183,7 +185,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.2); /* Overlay mais claro */
 }
 
 .hero-content {
@@ -255,7 +257,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Page Header */
 .page-header {
-    background: linear-gradient(135deg, var(--secondary-dark) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
     padding: 150px 0 80px;
     text-align: center;
     margin-top: 90px;
@@ -297,7 +299,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Destaques */
 .section-destaques {
     padding: 100px 0;
-    background-color: var(--secondary-dark);
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%); /* Gradiente mais claro */
 }
 
 .destaques-grid {
@@ -309,7 +311,7 @@ h1, h2, h3, h4, h5, h6 {
 .destaque-item {
     text-align: center;
     padding: 40px 30px;
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
     border-radius: 15px;
     transition: all 0.4s ease;
     border: 1px solid rgba(255,255,255,0.05);
@@ -341,7 +343,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Áreas Resumo */
 .section-areas-resumo {
     padding: 100px 0;
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%); /* Gradiente mais claro */
 }
 
 .areas-grid {
@@ -352,7 +354,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .area-card {
-    background-color: var(--secondary-dark);
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
     padding: 40px 30px;
     border-radius: 15px;
     text-decoration: none;
@@ -391,7 +393,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Processo */
 .section-processo {
     padding: 100px 0;
-    background-color: var(--secondary-dark);
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%); /* Gradiente mais claro */
 }
 
 .processo-grid {
@@ -404,7 +406,7 @@ h1, h2, h3, h4, h5, h6 {
 .processo-item {
     text-align: center;
     padding: 50px 30px;
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
     border-radius: 15px;
     transition: all 0.4s ease;
     box-shadow: 0 8px 25px rgba(0,0,0,0.3);
@@ -445,7 +447,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Escritório Page */
 .section-escritorio-page {
     padding: 100px 0;
-    background-color: var(--secondary-dark);
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%); /* Gradiente mais claro */
 }
 
 .escritorio-content-page {
@@ -506,7 +508,7 @@ h1, h2, h3, h4, h5, h6 {
 /* MVV Section */
 .section-mvv {
     padding: 100px 0;
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%); /* Gradiente mais claro */
 }
 
 .mvv-grid {
@@ -518,7 +520,7 @@ h1, h2, h3, h4, h5, h6 {
 .mvv-item {
     text-align: center;
     padding: 50px 30px;
-    background-color: var(--secondary-dark);
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
     border-radius: 15px;
     transition: all 0.4s ease;
     border: 1px solid rgba(255,255,255,0.05);
@@ -550,7 +552,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Diferenciais */
 .section-diferenciais {
     padding: 100px 0;
-    background-color: var(--secondary-dark);
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%); /* Gradiente mais claro */
 }
 
 .diferenciais-grid {
@@ -561,7 +563,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .diferencial-item {
     padding: 40px 30px;
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
     border-radius: 15px;
     transition: all 0.4s ease;
     border: 1px solid rgba(255,255,255,0.05);
@@ -595,11 +597,11 @@ h1, h2, h3, h4, h5, h6 {
 /* Área Detail */
 .section-area-detail {
     padding: 80px 0;
-    background-color: var(--secondary-dark);
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%); /* Gradiente mais claro */
 }
 
 .section-area-detail.alt {
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%); /* Gradiente mais claro */
 }
 
 .area-detail-content {
@@ -670,7 +672,7 @@ h1, h2, h3, h4, h5, h6 {
 .area-detail-image .image-placeholder {
     width: 100%;
     height: 400px;
-    background: linear-gradient(45deg, #1a242f 0%, #0a1118 100%);
+    background: linear-gradient(45deg, #2a3a2f 0%, #1a2a1f 100%);
     border-radius: 10px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
@@ -703,7 +705,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Contato Page */
 .section-contato-page {
     padding: 100px 0;
-    background-color: var(--secondary-dark);
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%); /* Gradiente mais claro */
 }
 
 .contato-grid {
@@ -714,7 +716,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .contato-info-box,
 .contato-form-box {
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
     padding: 50px 40px;
     border-radius: 15px;
     border: 1px solid rgba(255,255,255,0.05);
@@ -772,7 +774,7 @@ h1, h2, h3, h4, h5, h6 {
 .form-group select,
 .form-group textarea {
     padding: 15px;
-    background-color: var(--secondary-dark);
+    background-color: var(--light-dark);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 8px;
     color: var(--white);
@@ -796,7 +798,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Mapa */
 .section-mapa {
     padding: 100px 0;
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%); /* Gradiente mais claro */
 }
 
 .mapa-container {
@@ -806,7 +808,7 @@ h1, h2, h3, h4, h5, h6 {
 .mapa-placeholder {
     width: 100%;
     height: 400px;
-    background-color: var(--secondary-dark);
+    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%); /* Gradiente mais claro */
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -824,7 +826,7 @@ h1, h2, h3, h4, h5, h6 {
 /* CTA WhatsApp */
 .section-cta-whatsapp {
     padding: 100px 0;
-    background-color: var(--secondary-dark);
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%); /* Gradiente mais claro */
     text-align: center;
 }
 
@@ -862,7 +864,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Footer */
 .footer {
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%); /* Gradiente mais claro */
     color: var(--text-muted);
     padding: 60px 0 30px;
     border-top: 1px solid rgba(255,255,255,0.05);
@@ -1038,4 +1040,4 @@ h1, h2, h3, h4, h5, h6 {
         padding: 14px 30px;
         font-size: 0.9rem;
     }
-}
+    }
