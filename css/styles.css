@@ -8,14 +8,14 @@
 :root {
     --primary-dark: #000000;
     --secondary-dark: #0a0a0a;
-    --accent-military-green: #3a5f38; /* Verde militar mais vibrante */
-    --accent-gold: #b8860b; /* Dourado mais suave */
+    --accent-military-green: #2a4a28; /* Verde militar original menos brilhante */
+    --accent-gold: #d4af37;
     --text-light: #ffffff;
     --text-muted: #b0b0b0;
     --white: #ffffff;
     --gradient-start: #000000;
     --gradient-end: #1a1a1a;
-    --military-green-dark: #2d4a2b; /* Verde militar escuro */
+    --military-green-dark: #1e3a1c;
 }
 
 html {
@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 0;
     width: 0;
     height: 2px;
-    background-color: var(--accent-military-green); /* Alterado para verde militar */
+    background-color: var(--accent-gold);
     transition: width 0.3s ease;
 }
 
@@ -104,7 +104,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--accent-military-green); /* Alterado para verde militar */
+    color: var(--accent-gold);
     transform: translateY(-2px);
 }
 
@@ -116,13 +116,13 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 5px;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(58, 95, 56, 0.5); /* Ajustado para nova cor */
+    box-shadow: 0 4px 10px rgba(42, 74, 40, 0.5);
 }
 
 .btn-whatsapp:hover {
     background-color: var(--military-green-dark);
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(58, 95, 56, 0.7); /* Ajustado para nova cor */
+    box-shadow: 0 6px 15px rgba(42, 74, 40, 0.7);
 }
 
 .menu-toggle {
@@ -143,9 +143,9 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s ease;
 }
 
-/* Hero Section - PARTE MODIFICADA */
+/* Hero Section - MANTIDO COMO ESTAVA */
 .hero {
-    background: linear-gradient(135deg, rgba(0,0,0,0.45) 0%, rgba(26,26,26,0.45) 100%), 
+    background: linear-gradient(135deg, rgba(0,0,0,0.65) 0%, rgba(26,26,26,0.65) 100%), 
                 url('../images/60d4e722a810560333381310_Advogado-4.0.jpeg') center/cover no-repeat;
     min-height: 100vh;
     display: flex;
@@ -164,7 +164,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.3); /* Overlay mais claro */
+    background: rgba(0,0,0,0.4);
     z-index: 1;
 }
 
@@ -183,7 +183,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.3); /* Overlay mais claro */
+    background: rgba(0,0,0,0.4);
 }
 
 .hero-content {
@@ -214,24 +214,24 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-primary {
     display: inline-block;
-    background-color: var(--accent-military-green); /* Alterado para verde militar */
-    color: var(--white);
+    background-color: var(--accent-gold);
+    color: var(--primary-dark);
     padding: 18px 45px;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 700;
     letter-spacing: 1.5px;
     transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(58, 95, 56, 0.5); /* Ajustado para nova cor */
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
     text-transform: uppercase;
     border: none;
     cursor: pointer;
 }
 
 .btn-primary:hover {
-    background-color: var(--military-green-dark);
+    background-color: #c4a02f;
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(58, 95, 56, 0.7); /* Ajustado para nova cor */
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.7);
 }
 
 .btn-secondary {
@@ -243,14 +243,14 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 8px;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(58, 95, 56, 0.5); /* Ajustado para nova cor */
+    box-shadow: 0 4px 15px rgba(42, 74, 40, 0.5);
     text-transform: uppercase;
 }
 
 .btn-secondary:hover {
     background-color: var(--military-green-dark);
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(58, 95, 56, 0.7); /* Ajustado para nova cor */
+    box-shadow: 0 6px 20px rgba(42, 74, 40, 0.7);
 }
 
 /* Page Header */
@@ -259,7 +259,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 150px 0 80px;
     text-align: center;
     margin-top: 90px;
-    border-bottom: 2px solid rgba(58, 95, 56, 0.3); /* Ajustado para verde militar */
+    border-bottom: 2px solid rgba(42, 74, 40, 0.3);
 }
 
 .page-title {
@@ -318,7 +318,7 @@ h1, h2, h3, h4, h5, h6 {
 .destaque-item:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-    border-color: var(--accent-military-green); /* Alterado para verde militar */
+    border-color: var(--accent-gold);
 }
 
 .destaque-icon {
@@ -329,7 +329,7 @@ h1, h2, h3, h4, h5, h6 {
 .destaque-title {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: var(--accent-military-green); /* Alterado para verde militar */
+    color: var(--accent-gold);
 }
 
 .destaque-description {
@@ -414,13 +414,13 @@ h1, h2, h3, h4, h5, h6 {
 .processo-item:hover {
     transform: translateY(-15px) scale(1.02);
     box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-    border-color: var(--accent-military-green); /* Alterado para verde militar */
+    border-color: var(--accent-gold);
 }
 
 .processo-number {
     font-size: 3.5rem;
     font-weight: 700;
-    color: var(--accent-military-green); /* Alterado para verde militar */
+    color: var(--accent-military-green);
     margin-bottom: 25px;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
 }
@@ -457,7 +457,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .content-title {
     font-size: 2.5rem;
-    color: var(--accent-military-green); /* Alterado para verde militar */
+    color: var(--accent-gold);
     margin-bottom: 30px;
 }
 
@@ -475,7 +475,7 @@ h1, h2, h3, h4, h5, h6 {
 .image-frame {
     position: relative;
     padding: 20px;
-    border: 2px solid var(--accent-military-green); /* Alterado para verde militar */
+    border: 2px solid var(--accent-gold);
     border-radius: 10px;
     overflow: hidden;
 }
@@ -496,7 +496,7 @@ h1, h2, h3, h4, h5, h6 {
 .image-placeholder {
     width: 100%;
     height: 400px;
-    background: linear-gradient(45deg, #2d4a2b 0%, #3a5f38 100%); /* Ajustado para tons de verde militar */
+    background: linear-gradient(45deg, #0f3d2a 0%, #1e5a3e 100%);
     position: relative;
     z-index: 2;
     border-radius: 8px;
@@ -527,7 +527,7 @@ h1, h2, h3, h4, h5, h6 {
 .mvv-item:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-    border-color: var(--accent-military-green); /* Alterado para verde militar */
+    border-color: var(--accent-gold);
 }
 
 .mvv-icon {
@@ -576,7 +576,7 @@ h1, h2, h3, h4, h5, h6 {
 .diferencial-number {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--accent-military-green); /* Alterado para verde militar */
+    color: var(--accent-gold);
     margin-bottom: 20px;
 }
 
@@ -619,7 +619,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .area-detail-title {
     font-size: 2.5rem;
-    color: var(--accent-military-green); /* Alterado para verde militar */
+    color: var(--accent-gold);
     margin-bottom: 25px;
 }
 
@@ -648,14 +648,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .services-column p::before {
     content: '✓';
-    color: var(--accent-military-green); /* Alterado para verde militar */
+    color: var(--accent-gold);
     margin-right: 10px;
     font-size: 1.2em;
 }
 
 .area-highlight-box {
-    background-color: rgba(58, 95, 56, 0.1); /* Ajustado para verde militar */
-    border-left: 5px solid var(--accent-military-green); /* Alterado para verde militar */
+    background-color: rgba(42, 74, 40, 0.1);
+    border-left: 5px solid var(--accent-gold);
     padding: 25px;
     margin-top: 30px;
     border-radius: 5px;
@@ -670,7 +670,7 @@ h1, h2, h3, h4, h5, h6 {
 .area-detail-image .image-placeholder {
     width: 100%;
     height: 400px;
-    background: linear-gradient(45deg, #2d4a2b 0%, #3a5f38 100%); /* Ajustado para tons de verde militar */
+    background: linear-gradient(45deg, #1a242f 0%, #0a1118 100%);
     border-radius: 10px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
@@ -678,7 +678,7 @@ h1, h2, h3, h4, h5, h6 {
 /* CTA Page */
 .section-cta-page {
     padding: 100px 0;
-    background: linear-gradient(135deg, var(--accent-military-green) 0%, var(--military-green-dark) 100%); /* Ajustado para verde militar */
+    background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-military-green) 100%);
     text-align: center;
 }
 
@@ -722,7 +722,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .contato-box-title {
     font-size: 2rem;
-    color: var(--accent-military-green); /* Alterado para verde militar */
+    color: var(--accent-gold);
     margin-bottom: 40px;
 }
 
@@ -785,8 +785,8 @@ h1, h2, h3, h4, h5, h6 {
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--accent-military-green); /* Alterado para verde militar */
-    box-shadow: 0 0 10px rgba(58, 95, 56, 0.3); /* Ajustado para verde militar */
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
 }
 
 .form-group textarea {
@@ -812,7 +812,7 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px solid rgba(58, 95, 56, 0.3); /* Ajustado para verde militar */
+    border: 2px solid rgba(42, 74, 40, 0.3);
 }
 
 .mapa-placeholder p {
@@ -846,14 +846,14 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.2rem;
     letter-spacing: 1px;
     transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(58, 95, 56, 0.4); /* Ajustado para nova cor */
+    box-shadow: 0 6px 20px rgba(42, 74, 40, 0.4);
     text-transform: uppercase;
 }
 
 .btn-whatsapp-large:hover {
     background-color: var(--military-green-dark);
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(58, 95, 56, 0.5); /* Ajustado para nova cor */
+    box-shadow: 0 8px 25px rgba(42, 74, 40, 0.5);
 }
 
 .whatsapp-icon {
@@ -882,7 +882,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer-title {
     font-size: 1.3rem;
-    color: var(--accent-military-green); /* Alterado para verde militar */
+    color: var(--accent-gold);
     margin-bottom: 20px;
 }
 
@@ -907,7 +907,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-links a:hover {
-    color: var(--accent-military-green); /* Alterado para verde militar */
+    color: var(--accent-gold);
 }
 
 .footer-bottom {
@@ -925,7 +925,7 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background-color: var(--accent-military-green); /* Alterado para verde militar */
+    background-color: var(--accent-gold);
     color: var(--white);
     width: 55px;
     height: 55px;
@@ -939,7 +939,7 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s ease;
     z-index: 999;
     font-size: 1.5rem;
-    box-shadow: 0 4px 15px rgba(58, 95, 56, 0.3); /* Ajustado para verde militar */
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
     border: none;
 }
 
@@ -949,9 +949,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .scroll-top:hover {
-    background-color: var(--military-green-dark);
+    background-color: #c4a02f;
     transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(58, 95, 56, 0.4); /* Ajustado para verde militar */
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
 }
 
 /* Animations */
