@@ -21,10 +21,10 @@
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     
     <style>
-        /* Estilos para a seção do mapa - DEPOIS DO RODAPÉ */
-        .section-mapa {
+        /* Estilos para o mapa após o rodapé */
+        .mapa-pos-rodape {
             width: 100%;
-            background-color: #f5f5f5;
+            background: #f8f9fa;
         }
         
         .mapa-container {
@@ -220,7 +220,6 @@
         </div>
     </section>
 
-    <!-- FOOTER - ANTES DO MAPA -->
     <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
@@ -262,8 +261,8 @@
         </div>
     </footer>
 
-    <!-- MAPA - AGORA DEPOIS DO RODAPÉ (ÚLTIMO ELEMENTO DO SITE) -->
-    <div class="section-mapa">
+    <!-- MAPA APÓS O RODAPÉ - ÚLTIMO ELEMENTO DO SITE -->
+    <div class="mapa-pos-rodape">
         <div class="mapa-container">
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7678.370135147556!2d-47.89794823626198!3d-15.79419269806306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3b1bb8608333%3A0x6f57ff70e2aea5c3!2sCRAVEIRO%20%26%20SAKAROV%20-%20ADVOGADOS%20ASSOCIADOS!5e0!3m2!1spt-BR!2sbr!4v1760539611607!5m2!1spt-BR!2sbr" 
@@ -271,7 +270,8 @@
                 allowfullscreen="" 
                 loading="lazy" 
                 referrerpolicy="no-referrer-when-downgrade"
-                title="Localização do Escritório Craveiro e Sakarov Advogados">
+                title="Localização do Escritório Craveiro e Sakarov Advogados"
+                aria-label="Mapa interativo mostrando a localização do escritório de advocacia">
             </iframe>
         </div>
     </div>
