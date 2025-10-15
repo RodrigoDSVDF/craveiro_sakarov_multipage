@@ -389,10 +389,10 @@ section, header, footer, main, div, article, nav {
 }
 
 /* =============================================== */
-/* ÁREAS RESUMO SECTION - MOBILE FRIENDLY */
+/* ÁREAS RESUMO SECTION - TAMANHO AUMENTADO */
 /* =============================================== */
 .section-areas-resumo {
-    padding: clamp(40px, 6vw, 80px) 0;
+    padding: clamp(50px, 7vw, 90px) 0;
     background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%);
     width: 100%;
     max-width: 100vw;
@@ -401,21 +401,21 @@ section, header, footer, main, div, article, nav {
 
 .areas-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: clamp(15px, 2vw, 25px);
-    margin-bottom: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: clamp(18px, 2.5vw, 28px);
+    margin-bottom: 50px;
 }
 
-/* Cards com imagens de fundo - MOBILE FRIENDLY */
+/* Cards com imagens de fundo - TAMANHO AUMENTADO */
 .area-card {
     position: relative;
     overflow: hidden;
-    min-height: 250px;
+    min-height: 280px;
     display: flex;
     align-items: flex-end;
     color: white;
     text-decoration: none;
-    border-radius: 12px;
+    border-radius: 15px;
     transition: all 0.4s ease;
     background-size: cover;
     background-position: center;
@@ -443,7 +443,7 @@ section, header, footer, main, div, article, nav {
 .area-card-content {
     position: relative;
     z-index: 2;
-    padding: 1.5rem;
+    padding: 2rem;
     width: 100%;
 }
 
@@ -457,7 +457,7 @@ section, header, footer, main, div, article, nav {
 
 .area-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
     border-color: var(--accent-gold);
 }
 
@@ -490,18 +490,18 @@ section, header, footer, main, div, article, nav {
     background-image: url('../images/istockphoto-1499401564-612x612.jpg');
 }
 
-/* Ícones e tipografia dos cards - MOBILE OPTIMIZED */
+/* Ícones e tipografia dos cards - TAMANHO AUMENTADO */
 .area-card-icon {
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    margin-bottom: 15px;
+    font-size: clamp(2.2rem, 4.5vw, 2.8rem);
+    margin-bottom: 18px;
     color: var(--accent-gold);
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
     display: block;
 }
 
 .area-card-title {
-    font-size: clamp(1.2rem, 3vw, 1.4rem);
-    margin-bottom: 12px;
+    font-size: clamp(1.3rem, 3.2vw, 1.5rem);
+    margin-bottom: 15px;
     color: var(--white);
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
     font-weight: 700;
@@ -509,10 +509,10 @@ section, header, footer, main, div, article, nav {
 }
 
 .area-card-description {
-    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+    font-size: clamp(0.9rem, 2.7vw, 1rem);
     color: var(--text-light);
-    line-height: 1.5;
-    margin-bottom: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
     opacity: 0.95;
     display: -webkit-box;
@@ -524,8 +524,8 @@ section, header, footer, main, div, article, nav {
 .area-card-link {
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+    letter-spacing: 0.6px;
     color: var(--accent-gold);
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
     display: inline-block;
@@ -539,7 +539,7 @@ section, header, footer, main, div, article, nav {
 
 .section-cta {
     text-align: center;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
 }
 
 /* =============================================== */
@@ -1189,17 +1189,17 @@ section, header, footer, main, div, article, nav {
 @media (max-width: 375px) {
     .areas-grid {
         grid-template-columns: 1fr;
-        gap: 12px;
-        padding: 0 10px;
+        gap: 15px;
+        padding: 0 12px;
     }
     
     .area-card {
-        min-height: 220px;
-        border-radius: 10px;
+        min-height: 240px;
+        border-radius: 12px;
     }
     
     .area-card-content {
-        padding: 1.2rem;
+        padding: 1.5rem;
     }
     
     .area-card-title {
@@ -1224,23 +1224,23 @@ section, header, footer, main, div, article, nav {
 /* Smartphones médios (376px - 480px) */
 @media (max-width: 480px) {
     .section-areas-resumo {
-        padding: 30px 0;
+        padding: 35px 0;
     }
     
     .areas-grid {
         grid-template-columns: 1fr;
-        gap: 15px;
-        padding: 0 15px;
+        gap: 18px;
+        padding: 0 18px;
     }
     
     .area-card {
-        min-height: 200px;
+        min-height: 220px;
         margin: 0;
         width: 100%;
     }
     
     .area-card-content {
-        padding: 1.5rem;
+        padding: 1.8rem;
     }
     
     .section-header {
@@ -1268,13 +1268,13 @@ section, header, footer, main, div, article, nav {
 /* Tablets pequenos (481px - 768px) */
 @media (max-width: 768px) {
     .areas-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-        padding: 0 10px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 22px;
+        padding: 0 15px;
     }
     
     .area-card {
-        min-height: 230px;
+        min-height: 250px;
     }
     
     .area-card:hover {
