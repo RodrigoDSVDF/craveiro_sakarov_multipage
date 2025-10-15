@@ -365,7 +365,7 @@ img, svg {
 }
 
 /* =============================================== */
-/* ÁREAS RESUMO SECTION */
+/* ÁREAS RESUMO SECTION - COM IMAGENS DE FUNDO */
 /* =============================================== */
 .section-areas-resumo {
     padding: clamp(60px, 8vw, 100px) 0;
@@ -374,42 +374,116 @@ img, svg {
 
 .areas-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: clamp(20px, 3vw, 30px);
     margin-bottom: 60px;
 }
 
+/* Cards com imagens de fundo */
 .area-card {
-    background: linear-gradient(135deg, var(--medium-dark) 0%, var(--light-dark) 100%);
-    padding: clamp(30px, 4vw, 40px) clamp(20px, 3vw, 30px);
-    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+    display: flex;
+    align-items: flex-end;
+    color: white;
     text-decoration: none;
+    border-radius: 15px;
     transition: all 0.4s ease;
-    border: 1px solid rgba(255,255,255,0.05);
-    display: block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.area-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.8), rgba(42, 74, 40, 0.7));
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.area-card-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    width: 100%;
+}
+
+.area-card:hover .area-card-overlay {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.9), rgba(42, 74, 40, 0.8));
 }
 
 .area-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-    border-color: var(--accent-military-green);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    border-color: var(--accent-gold);
 }
 
+/* Imagens de fundo específicas para cada área */
+.area-card-empresarial {
+    background-image: url('../images/vecteezy_business-and-lawyers-discussing-contract-papers-with-brass_10321171.jpg');
+}
+
+.area-card-tributario {
+    background-image: url('../images/vecteezy_law-and-authority-lawyer-concept-judgment-gavel-hammer-in_27662789.jpg');
+}
+
+.area-card-familia {
+    background-image: url('../images/direito-de-familia-conceito-principais-e-atuacao-profissional.jpg');
+}
+
+.area-card-imobiliario {
+    background-image: url('../images/istockphoto-1328608958-612x612.jpg');
+}
+
+.area-card-trabalho {
+    background-image: url('../images/direitoadquiridotrabalhistaentendacomofunciona-300x151.jpeg');
+}
+
+.area-card-previdenciario {
+    background-image: url('../images/direito-previdenciario.jpg');
+}
+
+.area-card-marcas {
+    background-image: url('../images/istockphoto-1499401564-612x612.jpg');
+}
+
+/* Ícones e tipografia dos cards */
 .area-card-icon {
     font-size: clamp(2.5rem, 4vw, 3rem);
     margin-bottom: 20px;
+    color: var(--accent-gold);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .area-card-title {
     font-size: clamp(1.3rem, 2vw, 1.5rem);
     margin-bottom: 15px;
-    color: var(--accent-military-green);
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 700;
 }
 
 .area-card-description {
     font-size: clamp(0.9rem, 1.5vw, 1rem);
     color: var(--text-light);
     line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.area-card-link {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    color: var(--accent-gold);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 .section-cta {
@@ -1314,4 +1388,4 @@ img, svg {
 
 .mt-0 {
     margin-top: 0;
-}
+    }
