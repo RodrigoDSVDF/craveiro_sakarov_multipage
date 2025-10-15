@@ -7,12 +7,12 @@
     box-sizing: border-box;
 }
 
-
-/* PREVENIR ROLAGEM HORIZONTAL */
+/* CORREÇÃO DEFINITIVA PARA ROLAGEM HORIZONTAL */
 html, body {
-    max-width: 100%;
+    max-width: 100vw;
     overflow-x: hidden;
     width: 100%;
+    position: relative;
 }
 
 :root {
@@ -66,8 +66,15 @@ img, svg {
     display: block;
 }
 
+/* GARANTIR QUE TODOS OS ELEMENTOS PRINCIPAIS NÃO CAUSEM OVERFLOW */
+section, header, footer, main, div, article, nav {
+    max-width: 100vw;
+    box-sizing: border-box;
+}
+
 /* =============================================== */
-/* HEADER /*
+/* HEADER */
+/* =============================================== */
 .header {
     background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%);
     padding: 15px 0;
@@ -182,6 +189,8 @@ img, svg {
     margin-top: 90px;
     overflow: hidden;
     padding: 80px 0;
+    width: 100%;
+    max-width: 100vw;
 }
 
 .hero::before {
@@ -221,6 +230,7 @@ img, svg {
     max-width: 900px;
     padding: 40px 20px;
     animation: fadeInUp 1s ease-out;
+    width: 100%;
 }
 
 .hero-title {
@@ -291,6 +301,8 @@ img, svg {
     text-align: center;
     margin-top: 90px;
     border-bottom: 2px solid rgba(42, 74, 40, 0.3);
+    width: 100%;
+    max-width: 100vw;
 }
 
 .page-title {
@@ -333,6 +345,9 @@ img, svg {
 .section-destaques {
     padding: clamp(60px, 8vw, 100px) 0;
     background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 .destaques-grid {
@@ -379,6 +394,9 @@ img, svg {
 .section-areas-resumo {
     padding: clamp(60px, 8vw, 100px) 0;
     background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%);
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 .areas-grid {
@@ -403,6 +421,7 @@ img, svg {
     background-position: center;
     background-repeat: no-repeat;
     border: 1px solid rgba(255,255,255,0.1);
+    max-width: 100%;
 }
 
 .area-card-overlay {
@@ -505,6 +524,9 @@ img, svg {
 .section-processo {
     padding: clamp(60px, 8vw, 100px) 0;
     background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 .processo-grid {
@@ -561,6 +583,9 @@ img, svg {
 .section-escritorio-page {
     padding: clamp(60px, 8vw, 100px) 0;
     background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 .escritorio-content-page {
@@ -614,6 +639,9 @@ img, svg {
 .section-mvv {
     padding: clamp(60px, 8vw, 100px) 0;
     background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%);
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 .mvv-grid {
@@ -670,6 +698,9 @@ img, svg {
 .section-diferenciais {
     padding: clamp(60px, 8vw, 100px) 0;
     background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 .diferenciais-grid {
@@ -717,6 +748,9 @@ img, svg {
 .section-area-detail {
     padding: clamp(50px, 6vw, 80px) 0;
     background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 .section-area-detail.alt {
@@ -803,6 +837,9 @@ img, svg {
     padding: clamp(60px, 8vw, 100px) 0;
     background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-military-green) 100%);
     text-align: center;
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 .cta-content {
@@ -829,6 +866,9 @@ img, svg {
 .section-contato-page {
     padding: clamp(60px, 8vw, 100px) 0;
     background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 .contato-grid {
@@ -927,6 +967,9 @@ img, svg {
 .section-mapa {
     padding: clamp(60px, 8vw, 100px) 0;
     background: linear-gradient(135deg, var(--light-dark) 0%, var(--primary-dark) 100%);
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 .mapa-container {
@@ -958,6 +1001,9 @@ img, svg {
     padding: clamp(60px, 8vw, 100px) 0;
     background: linear-gradient(135deg, var(--light-dark) 0%, var(--medium-dark) 100%);
     text-align: center;
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 .cta-whatsapp-content {
@@ -1004,6 +1050,9 @@ img, svg {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 .footer-content {
@@ -1397,4 +1446,4 @@ img, svg {
 
 .mt-0 {
     margin-top: 0;
-    }
+}
